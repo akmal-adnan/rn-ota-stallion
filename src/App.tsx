@@ -1,12 +1,16 @@
+import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import {SafeAreaView} from 'react-native';
-import HomeScreen from './screens/HomeScreen';
+
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import RootStack from './navigation/RootStack';
 
 function App(): React.JSX.Element {
   return (
-    <SafeAreaView>
-      <HomeScreen />
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <RootStack />
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
 
