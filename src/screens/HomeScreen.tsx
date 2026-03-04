@@ -19,6 +19,7 @@ import {
   MOCK_POLICIES,
   MOCK_TIPS,
 } from '../data/mockData';
+import type {Policy} from '../data/mockData';
 import {RootStackParamList} from '../navigation/RootStack';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
@@ -31,8 +32,17 @@ const HomeScreen = (): React.JSX.Element => {
   const insets = useSafeAreaInsets();
   const primaryPolicy = MOCK_POLICIES[0];
 
-  const handleViewAllPolicies = (): void => {
-    navigation.navigate('PoliciesDetail');
+  const handleOpenPolicy = (policy: Policy): void => {
+    navigation.navigate('PoliciesDetail', {policy});
+  };
+
+  const handleViewPolicies = (): void => {
+    if (!primaryPolicy) {
+      navigation.navigate('PoliciesDetail');
+      return;
+    }
+
+    handleOpenPolicy(primaryPolicy);
   };
 
   const handleFileClaim = (): void => {
@@ -48,7 +58,7 @@ const HomeScreen = (): React.JSX.Element => {
   };
 
   const quickActions = [
-    {label: 'View policies', onPress: handleViewAllPolicies},
+    {label: 'View policies', onPress: handleViewPolicies},
     {label: 'File a claim', onPress: handleFileClaim},
     {label: 'Make a payment', onPress: handleMakePayment},
     {label: 'Support', onPress: handleContactSupport},
@@ -69,15 +79,21 @@ const HomeScreen = (): React.JSX.Element => {
 
         <PrimaryCoverageCard
           policy={primaryPolicy}
-          onViewPolicy={handleViewAllPolicies}
+          onViewPolicy={() => {
+            if (primaryPolicy) {
+              handleOpenPolicy(primaryPolicy);
+            } else {
+              navigation.navigate('PoliciesDetail');
+            }
+          }}
         />
 
         <QuickActions actions={quickActions} />
 
         <PoliciesPreview
           policies={MOCK_POLICIES}
-          onPolicyPress={handleViewAllPolicies}
-          onSeeAll={handleViewAllPolicies}
+          onPolicyPress={handleOpenPolicy}
+          onSeeAll={handleViewPolicies}
         />
 
         <ClaimsSnapshot

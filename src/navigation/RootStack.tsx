@@ -4,11 +4,12 @@ import React from 'react';
 import AppUpdateScreen from '../screens/AppUpdateScreen';
 import HomeScreen from '../screens/HomeScreen';
 import PoliciesDetailScreen from '../screens/PoliciesDetailScreen';
+import type {Policy} from '../data/mockData';
 
 export type RootStackParamList = {
   Home: undefined;
   AppUpdate: undefined;
-  PoliciesDetail: undefined;
+  PoliciesDetail: {policy: Policy} | undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
