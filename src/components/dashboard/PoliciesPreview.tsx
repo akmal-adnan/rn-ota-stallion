@@ -29,6 +29,7 @@ export function PoliciesPreview({
           <Text style={styles.sectionLink}>See all</Text>
         </TouchableOpacity>
       </View>
+
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -42,11 +43,11 @@ export function PoliciesPreview({
             <Text style={styles.policyNumber}>Policy {policy.number}</Text>
 
             <View style={styles.policyStatusRow}>
-              <View style={styles.statusChipActiveSmall}>
-                <Text style={styles.statusChipTextSmall}>{policy.status}</Text>
+              <View style={styles.statusPill}>
+                <Text style={styles.statusPillText}>{policy.status}</Text>
               </View>
 
-              <Text style={styles.policyMeta}>
+              <Text style={styles.policyStatusMeta}>
                 Next payment {policy.nextPaymentDate}
               </Text>
             </View>
@@ -69,13 +70,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 4,
   },
   sectionTitle: {
-    fontSize: 16,
-    fontWeight: '600',
+    fontSize: 15,
+    fontWeight: '500',
     color: COLORS.textPrimary,
-    marginBottom: 12,
+    marginBottom: 0,
   },
   sectionLink: {
     fontSize: 13,
@@ -83,48 +84,55 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   policiesCarousel: {
-    paddingVertical: 4,
+    paddingVertical: 2,
   },
   policyCard: {
-    width: 220,
-    backgroundColor: COLORS.card,
-    borderRadius: 16,
-    padding: 14,
-    marginRight: 12,
+    width: 200,
+    backgroundColor: COLORS.white,
+    borderRadius: 12,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    marginRight: 10,
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: COLORS.border,
   },
   policyType: {
-    fontSize: 14,
-    fontWeight: '600',
+    fontSize: 13,
+    fontWeight: '500',
     color: COLORS.textPrimary,
     marginBottom: 2,
   },
   policyNumber: {
-    fontSize: 12,
+    fontSize: 11,
     color: COLORS.textSecondary,
-    marginBottom: 8,
+    marginBottom: 10,
   },
   policyStatusRow: {
-    flex: 1,
-    gap: 8,
-    alignItems: 'flex-start',
-    marginBottom: 4,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
   },
-  statusChipActiveSmall: {
-    paddingHorizontal: 8,
-    paddingVertical: 2,
+  statusPill: {
+    paddingHorizontal: 10,
+    paddingVertical: 8,
     borderRadius: 999,
-    backgroundColor: COLORS.chipSuccessBg,
-    marginRight: 8,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: COLORS.success,
+    backgroundColor: COLORS.white,
   },
-  statusChipTextSmall: {
+  statusPillText: {
     fontSize: 11,
     fontWeight: '500',
-    color: COLORS.warning,
+    color: COLORS.success,
+  },
+  policyStatusMeta: {
+    marginLeft: 8,
+    fontSize: 11,
+    color: COLORS.textSecondary,
+    flexShrink: 1,
   },
   policyMeta: {
-    fontSize: 12,
+    fontSize: 11,
     color: COLORS.textSecondary,
   },
 });
