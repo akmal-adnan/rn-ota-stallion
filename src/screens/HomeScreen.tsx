@@ -7,19 +7,17 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {
   ClaimsSnapshot,
   DashboardHeader,
-  PrimaryCoverageCard,
   PoliciesPreview,
+  PrimaryCoverageCard,
   QuickActions,
   StatusStrip,
   TipsSection,
 } from '../components/dashboard';
+import {UpdateModal} from '../components/modal/UpdateModal';
 import {COLORS} from '../constants/colors';
-import {
-  MOCK_CLAIMS,
-  MOCK_POLICIES,
-  MOCK_TIPS,
-} from '../data/mockData';
 import type {Policy} from '../data/mockData';
+import {MOCK_CLAIMS, MOCK_POLICIES, MOCK_TIPS} from '../data/mockData';
+import {useOTAUpdate} from '../hooks/useOtaUpdate';
 import {RootStackParamList} from '../navigation/RootStack';
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<
@@ -31,6 +29,7 @@ const HomeScreen = (): React.JSX.Element => {
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const insets = useSafeAreaInsets();
   const primaryPolicy = MOCK_POLICIES[0];
+  const {isUpdateReady, loading, restartApp} = useOTAUpdate();
 
   const handleOpenPolicy = (policy: Policy): void => {
     navigation.navigate('PoliciesDetail', {policy});
@@ -69,7 +68,9 @@ const HomeScreen = (): React.JSX.Element => {
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}>
-        <DashboardHeader onAvatarPress={() => navigation.navigate('AppUpdate')} />
+        <DashboardHeader
+          onAvatarPress={() => navigation.navigate('AppUpdate')}
+        />
 
         <StatusStrip
           message="Payment due in 3 days for your auto policy."
@@ -96,12 +97,15 @@ const HomeScreen = (): React.JSX.Element => {
           onSeeAll={handleViewPolicies}
         />
 
-        <ClaimsSnapshot
-          claims={MOCK_CLAIMS}
-          onStartClaim={handleFileClaim}
-        />
+        <ClaimsSnapshot claims={MOCK_CLAIMS} onStartClaim={handleFileClaim} />
 
         <TipsSection tips={MOCK_TIPS} />
+
+        <UpdateModal
+          onRestart={restartApp}
+          loading={loading}
+          visible={isUpdateReady}
+        />
       </ScrollView>
     </View>
   );
