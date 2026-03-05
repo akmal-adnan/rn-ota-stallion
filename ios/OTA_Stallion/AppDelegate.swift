@@ -2,6 +2,7 @@ import UIKit
 import React
 import React_RCTAppDelegate
 import ReactAppDependencyProvider
+import react_native_stallion
 
 @main
 class AppDelegate: RCTAppDelegate {
@@ -21,10 +22,10 @@ class AppDelegate: RCTAppDelegate {
   }
 
   override func bundleURL() -> URL? {
-#if DEBUG
-    RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
-#else
-    Bundle.main.url(forResource: "main", withExtension: "jsbundle")
-#endif
+      #if DEBUG
+          RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
+      #else
+          StallionModule.getBundleURL()
+      #endif
   }
 }

@@ -1,10 +1,10 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 
+import type {Policy} from '../data/mockData';
 import AppUpdateScreen from '../screens/AppUpdateScreen';
 import HomeScreen from '../screens/HomeScreen';
 import PoliciesDetailScreen from '../screens/PoliciesDetailScreen';
-import type {Policy} from '../data/mockData';
 
 export type RootStackParamList = {
   Home: undefined;
@@ -27,7 +27,7 @@ function RootStack(): React.JSX.Element {
       <Stack.Screen
         name="AppUpdate"
         component={AppUpdateScreen}
-        options={{title: 'App Update'}}
+        options={{title: 'App Update', headerShown: true}}
       />
       <Stack.Screen
         name="PoliciesDetail"

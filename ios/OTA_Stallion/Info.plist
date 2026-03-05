@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>StallionProjectId</key>
+    <string>69a7eb335d1782299c39cc81</string>
+	<key>StallionAppToken</key>
+    <string>spb_v9EhTMz4AfD2VnPnfZICUqLaza2UAnuG7Bhz7MJKV0</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
