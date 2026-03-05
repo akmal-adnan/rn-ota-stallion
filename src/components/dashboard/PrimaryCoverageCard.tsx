@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 import {COLORS} from '../../constants/colors';
 import type {Policy} from '../../data/mockData';
@@ -60,13 +55,19 @@ export function PrimaryCoverageCard({
             <Text style={styles.primaryActionButtonText}>View policy</Text>
           </TouchableOpacity>
           <View style={styles.secondaryActions}>
-            <TouchableOpacity style={styles.secondaryActionButton} onPress={onIdCard}>
+            <TouchableOpacity
+              style={styles.secondaryActionButton}
+              onPress={onIdCard}>
               <Text style={styles.secondaryActionText}>ID card</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.secondaryActionButton} onPress={onDocuments}>
+            <TouchableOpacity
+              style={styles.secondaryActionButton}
+              onPress={onDocuments}>
               <Text style={styles.secondaryActionText}>Documents</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.secondaryActionButton} onPress={onShare}>
+            <TouchableOpacity
+              style={styles.secondaryActionButton}
+              onPress={onShare}>
               <Text style={styles.secondaryActionText}>Share</Text>
             </TouchableOpacity>
           </View>
